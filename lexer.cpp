@@ -1,7 +1,7 @@
 //*****************************************************************************
 // purpose: CSE 4713 / 6713 Assignment 1: Lexical Analyzer
 // created: 8-25-2015
-//  author: YOUR NAME HERE
+//  author: Paul Barrett
 //*****************************************************************************
 #include "lexer.h"
 #include <ctype.h>
