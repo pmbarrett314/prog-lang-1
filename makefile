@@ -6,13 +6,13 @@
 .PRECIOUS = driver.cpp lexer.h lexer.cpp
 
 _lex: lexer.o driver.o
-	g++ -o $@ $^
+	g++ -Wall -Wpedantic -o $@ $^
 
 lexer.o: lexer.cpp lexer.h
-	g++ -o $@ -c lexer.cpp
+	g++ -Wall -Wpedantic -o $@ -c lexer.cpp
 
 driver.o: driver.cpp lexer.h
-	g++ -o $@ -c driver.cpp
+	g++ -Wall -Wpedantic -o $@ -c driver.cpp
 
 clean: 
 	$(RM) *.o _lex *~
