@@ -16,11 +16,6 @@
 // Do the lexical parsing
 char lexeme[MAX_LEXEME_LEN];  // Character buffer for lexeme
 
-char store_and_read_char(char c) {
-  lexeme[yyleng++] = c;
-  return fgetc( yyin );
-}
-
 int check_single_char_tokens(char c){
   switch(c) {
         case ';': return TOK_SEMICOLON; break;
@@ -59,6 +54,11 @@ int check_keyword_tokens(){
     if(strncmp(lexeme, "not", 4)==0) return TOK_NOT;
     if(strncmp(lexeme, "length", 7)==0) return TOK_LENGTH;
     return -1;
+}
+
+char store_and_read_char(char c) {
+  lexeme[yyleng++] = c;
+  return fgetc( yyin );
 }
 
 char skip_space(char c){
