@@ -9,12 +9,15 @@
 #include <string.h>
 #include <cctype>
 #include <cstring>
-#include <regex>
 
 
 //*****************************************************************************
 // Do the lexical parsing
 char lexeme[MAX_LEXEME_LEN];  // Character buffer for lexeme
+
+bool is_valid_identifier_char(char c) {
+  return isalnum(c)||c=='_';
+}
 
 int check_single_char_tokens(char c){
   switch(c) {
@@ -159,7 +162,7 @@ int yylex()
 
   //c-identifier
   if(lexeme[0]=='$' && isalpha(c)) {
-    while(isalnum(c)||c=='_'){
+    while(is_valid_identifier_char(c)){
       c = store_and_read_char(c);
     }
     return TOK_CIDENTIFIER;
@@ -187,7 +190,7 @@ int yylex()
 
   //keywords and identifiers
   if(isalpha(lexeme[0])) {
-    while(isalnum(c)||c=='_'){
+    while(is_valid_identifier_char(c)){
       c = store_and_read_char(c);
     }
     return_code=check_keyword_tokens();
