@@ -25,12 +25,23 @@ def make_single_character_switch(filename):
 				print(format_single_caracter_token(row[0],row[2]),end=None)
 		print("\tdefault: return -1; break;\n\t}")
 
+def format_keyword_token(token,token_name):
+	token_len=len(token)
+	return f"\tif(strncmp(lexeme, \"{token}\", {token_len})==0) return {token_name};"
+
+def make_keyword_defines(filename):
+	with open(filename, "r") as chartfile:
+		chartreader = csv.reader(chartfile)
+		for row in chartreader:
+			if(len(row[0])>1 and int(row[1])<4000):
+				print(format_keyword_token(row[0],row[2]),end=None)
 
 
 def main():
 	chartfilename = "chart.csv"
 	make_token_defines(chartfilename)
 	make_single_character_switch(chartfilename)
+	make_keyword_defines(chartfilename)
 
 
 
