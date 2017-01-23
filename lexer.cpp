@@ -167,20 +167,15 @@ int yylex()
 
   //ints and floats
   if(isdigit(lexeme[0])) {
-    bool is_float=false;
     while(isdigit(c)||c=='.') {
-      c = store_and_read_char(c);
       if(c=='.') {
         c = store_and_read_char(c);
-        is_float=true;
-        break;
+        while(isdigit(c)){
+          c = store_and_read_char(c);
+        }
+        return TOK_FLOATLIT;
       }
-    }
-    while(isdigit(c)){
       c = store_and_read_char(c);
-    }
-    if(is_float) {
-      return TOK_FLOATLIT;
     }
     return TOK_INTLIT;
   }
