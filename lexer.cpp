@@ -7,9 +7,6 @@
 #include <ctype.h>
 #include <assert.h>
 #include <string.h>
-#include <cctype>
-#include <cstring>
-
 
 //*****************************************************************************
 // Do the lexical parsing
